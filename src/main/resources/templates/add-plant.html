@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="fragment :: head"></div>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!--sidebar start-->
+    <div th:insert="fragment :: sidebar"></div>
+    <!--sidebar end-->
+
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <div th:insert="fragment :: topbar"></div>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <h1 class="h3 mb-4 text-gray-800">Dodaj roślinkę</h1>
+
+                <form th:action="@{/save-plant}" th:object="${plant}" method="post">
+
+                    <div class="form-row">
+                        <div class="col-lg-4 col-md-6 form-group">
+                            <label for="name"></label>
+                            <input type="text" class="form-control" id="name" th:field="*{name}"
+                                   placeholder="Nazwa">
+                            <span class="error-msg" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 form-group">
+                            <label for="soil"></label>
+                            <input type="text" class="form-control" id="soil" th:field="*{soil}"
+                                   placeholder="Gleba">
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 form-group">
+                            <label for="humidity"></label>
+                            <input type="text" class="form-control" id="humidity" th:field="*{humidity}"
+                                   placeholder="Wilgotność">
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 form-group">
+                            <label for="structure"></label>
+                            <input type="text" class="form-control" id="structure"
+                                   th:field="*{structure}" placeholder="Pokrój">
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 form-group">
+                            <label for="flowers"></label>
+                            <input type="text" class="form-control" id="flowers" th:field="*{flowers}"
+                                   placeholder="Kwiaty">
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 form-group">
+                            <label for="leaves"></label>
+                            <input type="text" class="form-control" id="leaves" th:field="*{leaves}"
+                                   placeholder="Liście">
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 form-group">
+                            <label for="size">
+                            </label><input type="text" class="form-control" id="size" th:field="*{size}"
+                                           placeholder="Docelowa wysokość">
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-6 form-group">
+                            <label for="description"></label>
+                            <textarea class="form-control" id="description" rows="5"
+                                      placeholder="Opis" th:field="*{description}"></textarea>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="cultivation"></label>
+                            <textarea class="form-control" id="cultivation" rows="5"
+                                      placeholder="Uprawa" th:field="*{cultivation}"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-6 form-group">
+                            <label for="category"></label>
+                            <select name="category" class="form-control" id="category" th:field="*{category.id}">
+                                <option th:text="Kategoria" th:value="null"></option>
+                                <option th:each="category : ${cateogories}"
+                                        value="${category.id}"
+                                        th:text="${category.name}">
+                                </option>
+                            </select>
+                            <span class="error-msg" th:if="${#fields.hasErrors('category')}"
+                                  th:errors="*{category}"></span>
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label for="status"></label>
+                            <select name="status" class="form-control" id="status" th:field="*{status.id}">
+                                <option th:text="Status" th:value="null"></option>
+                                <option th:each="status : ${statuses}"
+                                        value="${status.id}"
+                                        th:text="${status.name}">
+                                </option>
+                            </select>
+                            <span class="error-msg" th:if="${#fields.hasErrors('status')}"
+                                  th:errors="*{status}"></span>
+                        </div>
+                    </div>
+
+
+<!--                    <h6>STANOWISKO</h6>-->
+<!--                    <div class="form-check">-->
+<!--                        <ul>-->
+<!--                            <li th:each="exposure: ${exposures}">-->
+<!--                                <input type="checkbox" th:field="*{exposures}" th:value="${exposure.id}"/>-->
+<!--                                <label th:for="${#ids.prev('exposures')}"-->
+<!--                                       th:text="${exposure.name}"></label>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+
+<!--                    </div>-->
+
+
+<!--                    <h6>TERMIN KWITNIENIA</h6>-->
+<!--                    <div class="form-check">-->
+<!--                        <ul>-->
+<!--                            <li th:each="bloomTime: ${bloomTimes}">-->
+<!--                                <input type="checkbox" th:field="*{bloomTimes}" th:value="${bloomTime.id}"/>-->
+<!--                                <label th:for="${#ids.prev('bloomTimes')}"-->
+<!--                                       th:text="${bloomTime.month}"></label>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Dodaj</button>
+                    </div>
+
+                </form>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <div th:insert="fragment :: footer"></div>
+        <!-- End of Footer -->
+
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div th:insert="fragment :: logout"></div>
+
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<!-- Core plugin JavaScript-->
+<script th:src="@{vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+<!-- Custom scripts for all pages-->
+<script th:src="@{js/sb-admin-2.min.js}"></script>
+
+</body>
+
+</html>
