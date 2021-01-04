@@ -28,6 +28,13 @@ public class PlantController {
         return "add-plant";
     }
 
+    @GetMapping("/plants")
+    public String getPlants(Model model) {
+        List<Plant> plants = plantService.getPlants();
+        model.addAttribute("plants",plants);
+        return "plants";
+    }
+
     @ModelAttribute("cateogories")
     public List<Category> categories() {
         return categoryService.getCategories();
