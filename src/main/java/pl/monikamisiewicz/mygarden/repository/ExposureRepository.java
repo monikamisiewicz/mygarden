@@ -1,4 +1,7 @@
 package pl.monikamisiewicz.mygarden.repository;
 
-public class ExposureRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import pl.monikamisiewicz.mygarden.model.Exposure;
+
+public interface ExposureRepository extends JpaRepository<Exposure, Long> {
 }
