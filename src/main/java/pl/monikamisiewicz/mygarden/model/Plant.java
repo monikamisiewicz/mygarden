@@ -61,16 +61,16 @@ public class Plant {
     @ManyToOne
     private Status status;
 
-//    @ManyToMany
-//    @JoinTable(name = "plant_exposures",
-//            joinColumns = @JoinColumn(name = "plant_id"),
-//            inverseJoinColumns = @JoinColumn(name = "exposure_id"))
-//    private Set<Exposure> exposures = new HashSet<>();
-//
-//    @ManyToMany
-//    @JoinTable(name = "plant_bloomtimes",
-//            joinColumns = @JoinColumn(name = "plant_id"),
-//            inverseJoinColumns = @JoinColumn(name = "bloomtime_id"))
-//    private Set<BloomTime> bloomTimes = new HashSet<>();
+    @ManyToMany
+    @JoinTable(name = "plant_exposures",
+            joinColumns = @JoinColumn(name = "plant_id"),
+            inverseJoinColumns = @JoinColumn(name = "exposure_id"))
+    private Set<Exposure> exposures = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "plant_bloomtimes",
+            joinColumns = @JoinColumn(name = "plant_id"),
+            inverseJoinColumns = @JoinColumn(name = "bloomtime_id"))
+    private Set<BloomTime> bloomTimes = new HashSet<>();
 
 }

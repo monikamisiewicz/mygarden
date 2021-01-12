@@ -25,30 +25,30 @@ public class Exposure {
     @Column(name = "name")
     private String name;
 
-//    @ManyToMany(mappedBy = "exposures")
-//    private Set<Plant> plants = new HashSet<>();
-//
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Exposure exposure = (Exposure) o;
-//        return Objects.equals(id, exposure.id) &&
-//                Objects.equals(name, exposure.name) &&
-//                Objects.equals(plants, exposure.plants);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(id, name, plants);
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "Exposure{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", plants=" + plants +
-//                '}';
-//    }
+    @ManyToMany(mappedBy = "exposures")
+    private Set<Plant> plants = new HashSet<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Exposure exposure = (Exposure) o;
+        return Objects.equals(id, exposure.id) &&
+                Objects.equals(name, exposure.name) &&
+                Objects.equals(plants, exposure.plants);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, plants);
+    }
+
+    @Override
+    public String toString() {
+        return "Exposure{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", plants=" + plants +
+                '}';
+    }
 }
